@@ -50,5 +50,8 @@ class Recorder:
 if __name__ == "__main__":
     rec = Recorder()
     rec.start()
-    time.sleep(2)
-    rec.stop()
+    try:
+        while True:
+            pass
+    except KeyboardInterrupt:
+        rec.stop()
