@@ -12,7 +12,7 @@ import time
 import pickle
 import glob
 import sys
-from mariogym.envs.losses import TimeLoss, LapLoss
+
 
 class ScreenRecorderThread(threading.Thread):
     def __init__(self, ):
@@ -95,11 +95,6 @@ def aggregate(frames_loc="frames", inputs_loc="inputs/input_recording_end_164245
         pickle.dump(total_dict, f, protocol=pickle.HIGHEST_PROTOCOL)
         
     
-def test_imitation(total_dict_loc="output/final.pkl"):
-    with open(f"{total_dict_loc}/final.pkl", "rb") as f:
-        traj = pickle.load(f)
-
-    
 
 class Recorder:
     def __init__(self):
@@ -120,6 +115,7 @@ class Recorder:
 
 
 if __name__ == "__main__":
+    from mariogym.envs.losses import TimeLoss, LapLoss
     aggregate(loss_fns=[TimeLoss(template_directory="../../../mariokart/seven_segment_matching/time"), LapLoss(template_directory="../../../mariokart/seven_segment_matching/lap")])
     # rec = Recorder()
     # rec.start()
